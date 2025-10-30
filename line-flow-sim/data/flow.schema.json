@@ -1,0 +1,197 @@
+{
+  "accounts": [
+    { "key": "divorce", "label": "離婚・男女問題" },
+    { "key": "inheritance", "label": "相続・遺産分割" },
+    { "key": "labor", "label": "労働トラブル" }
+  ],
+  "flows": {
+    "divorce": {
+      "key": "divorce",
+      "label": "離婚・男女問題",
+      "intro": "【ご相談ありがとうございます】\n\n不倫・離婚に関するご相談ですね。より詳しくお聞かせください👇",
+      "questions": [
+        {
+          "id": "q1_income",
+          "title": "配偶者の年収は？",
+          "options": [
+            { "label": "500万円未満", "score": 0, "tier": null },
+            { "label": "500〜1000万円", "score": 0, "tier": null },
+            { "label": "1000〜2000万円", "score": 1, "tier": "★" },
+            { "label": "2000万円以上", "score": 2, "tier": "★★" }
+          ]
+        },
+        {
+          "id": "q2_marriage",
+          "title": "婚姻期間は？",
+          "options": [
+            { "label": "5年未満", "score": 0, "tier": null },
+            { "label": "5〜10年", "score": 0, "tier": null },
+            { "label": "10〜20年", "score": 1, "tier": "★" },
+            { "label": "20年以上", "score": 2, "tier": "★★" }
+          ]
+        },
+        {
+          "id": "q3_children",
+          "title": "お子様はいますか？",
+          "options": [
+            { "label": "いない", "score": 0, "tier": null },
+            { "label": "1人", "score": 0, "tier": null },
+            { "label": "2人以上", "score": 1, "tier": "★" }
+          ]
+        },
+        {
+          "id": "q4_evidence",
+          "title": "不倫の証拠はありますか？",
+          "options": [
+            { "label": "ある（写真・動画・メール等）", "score": 2, "tier": "★★" },
+            { "label": "不確かだがある", "score": 0, "tier": null },
+            { "label": "ない", "score": 0, "tier": null }
+          ]
+        },
+        {
+          "id": "q5_partner_info",
+          "title": "不倫相手の情報は？",
+          "options": [
+            { "label": "名前・住所がわかる", "score": 2, "tier": "★★" },
+            { "label": "職場はわかる", "score": 1, "tier": "★" },
+            { "label": "わからない", "score": 0, "tier": null }
+          ]
+        }
+      ],
+      "judge": {
+        "premium": { "doubleStarsAtLeast": 3 },
+        "standard": { "starsBetween": [1, 2] },
+        "reject": { "stars": 0 }
+      },
+      "messages": {
+        "premium": "【高額慰謝料が見込めます】\n\n慰謝料300〜500万円が見込める可能性があります。早急に弁護士との面談をおすすめします。\n\n▼無料相談予約はこちら\n[予約フォームリンク]\n\n※相談は無料、契約前提ではありません\n※平日・土日対応可能",
+        "standard": "【ご相談内容を確認しました】\n\n慰謝料請求が可能なケースです。まずは弁護士との無料相談（15分）をご利用ください。\n\n▼無料相談予約はこちら\n[予約フォームリンク]",
+        "reject": "【ご相談ありがとうございます】\n\n現状では慰謝料請求が難しいケースです。以下の無料相談窓口をご利用ください。\n・法テラス：0570-078374\n・市区町村の無料法律相談"
+      }
+    },
+    "inheritance": {
+      "key": "inheritance",
+      "label": "相続・遺産分割",
+      "intro": "【相続に関するご相談】\n\nご状況を教えていただければ、最適なご案内をお届けします👇",
+      "questions": [
+        {
+          "id": "q1_asset_value",
+          "title": "遺産総額の目安は？",
+          "options": [
+            { "label": "3000万円未満", "score": 0, "tier": null },
+            { "label": "3000〜7000万円", "score": 1, "tier": "★" },
+            { "label": "7000万円以上", "score": 2, "tier": "★★" }
+          ]
+        },
+        {
+          "id": "q2_heirs",
+          "title": "相続人の人数は？",
+          "options": [
+            { "label": "1〜2人", "score": 0, "tier": null },
+            { "label": "3〜4人", "score": 1, "tier": "★" },
+            { "label": "5人以上", "score": 2, "tier": "★★" }
+          ]
+        },
+        {
+          "id": "q3_dispute",
+          "title": "相続人間で争いは？",
+          "options": [
+            { "label": "特にない", "score": 0, "tier": null },
+            { "label": "意見が分かれている", "score": 1, "tier": "★" },
+            { "label": "調停・訴訟を検討中", "score": 2, "tier": "★★" }
+          ]
+        },
+        {
+          "id": "q4_will",
+          "title": "遺言書はありますか？",
+          "options": [
+            { "label": "自筆である", "score": 1, "tier": "★" },
+            { "label": "公正証書", "score": 2, "tier": "★★" },
+            { "label": "ない / 不明", "score": 0, "tier": null }
+          ]
+        },
+        {
+          "id": "q5_deadline",
+          "title": "相続税の申告期限まで？",
+          "options": [
+            { "label": "6ヶ月以上ある", "score": 0, "tier": null },
+            { "label": "3〜6ヶ月", "score": 1, "tier": "★" },
+            { "label": "3ヶ月未満", "score": 2, "tier": "★★" }
+          ]
+        }
+      ],
+      "judge": {
+        "premium": { "doubleStarsAtLeast": 3, "starsAtLeast": 6 },
+        "standard": { "starsBetween": [2, 5] },
+        "reject": { "stars": 0 }
+      },
+      "messages": {
+        "premium": "【相続争いの早期解決が必要です】\n\n専門チームによる遺産分割・税務サポートが効果的な案件です。直近での面談調整をおすすめします。\n\n▼面談予約フォーム\n[予約フォームリンク]",
+        "standard": "【相続手続きを支援します】\n\n弁護士＋税理士が連携し、スムーズな分割協議をサポートします。まずは無料相談をご利用ください。\n\n▼無料相談予約はこちら\n[予約フォームリンク]",
+        "reject": "【お問い合わせありがとうございます】\n\n現時点では大きな争点がないため、まずは市区町村や税理士会の無料相談をご案内します。必要があれば再度ご連絡ください。"
+      }
+    },
+    "labor": {
+      "key": "labor",
+      "label": "労働トラブル",
+      "intro": "【労働問題のご相談】\n\n残業代や解雇などのトラブル内容をご選択ください👇",
+      "questions": [
+        {
+          "id": "q1_issue",
+          "title": "お悩みの内容は？",
+          "options": [
+            { "label": "未払い残業代", "score": 1, "tier": "★" },
+            { "label": "不当解雇", "score": 2, "tier": "★★" },
+            { "label": "パワハラ・セクハラ", "score": 1, "tier": "★" }
+          ]
+        },
+        {
+          "id": "q2_duration",
+          "title": "問題の期間は？",
+          "options": [
+            { "label": "1ヶ月未満", "score": 0, "tier": null },
+            { "label": "1〜6ヶ月", "score": 1, "tier": "★" },
+            { "label": "6ヶ月以上", "score": 2, "tier": "★★" }
+          ]
+        },
+        {
+          "id": "q3_evidence",
+          "title": "証拠は揃っていますか？",
+          "options": [
+            { "label": "タイムカード・記録がある", "score": 2, "tier": "★★" },
+            { "label": "メール・LINEがある", "score": 1, "tier": "★" },
+            { "label": "これから集める", "score": 0, "tier": null }
+          ]
+        },
+        {
+          "id": "q4_status",
+          "title": "現在のご状況は？",
+          "options": [
+            { "label": "就労中", "score": 0, "tier": null },
+            { "label": "退職予定", "score": 1, "tier": "★" },
+            { "label": "退職済", "score": 2, "tier": "★★" }
+          ]
+        },
+        {
+          "id": "q5_impact",
+          "title": "健康面・生活への影響は？",
+          "options": [
+            { "label": "特になし", "score": 0, "tier": null },
+            { "label": "通院中", "score": 1, "tier": "★" },
+            { "label": "休職・退職が必要", "score": 2, "tier": "★★" }
+          ]
+        }
+      ],
+      "judge": {
+        "premium": { "doubleStarsAtLeast": 2, "starsAtLeast": 6 },
+        "standard": { "starsBetween": [2, 5] },
+        "reject": { "stars": 0 }
+      },
+      "messages": {
+        "premium": "【高額請求が見込めます】\n\n証拠が揃っており重度の被害が確認できます。至急での面談調整をおすすめします。\n\n▼面談予約フォーム\n[予約フォームリンク]",
+        "standard": "【交渉・請求のサポートが可能です】\n\n残業代請求や和解交渉の実績が豊富です。まずは無料相談で状況を整理しましょう。\n\n▼無料相談予約はこちら\n[予約フォームリンク]",
+        "reject": "【お問い合わせありがとうございます】\n\n現状では法的対応が難しい可能性があります。まずは労働基準監督署や労政事務所の無料相談をご利用ください。"
+      }
+    }
+  }
+}
