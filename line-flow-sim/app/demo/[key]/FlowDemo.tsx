@@ -33,7 +33,7 @@ const FlowDemo = ({ flow }: Props) => {
   );
 
   const result = useMemo(() => calc(selectedOptions), [selectedOptions]);
-  const judgeResult = useMemo(() => judge(result, flow.judge), [result, flow.judge]);
+  const judgeResult = useMemo(() => judge(result), [result]);
   const isComplete = selections.every(selection => selection.option);
 
   const handleSelect = (questionId: string, option: Option) => {

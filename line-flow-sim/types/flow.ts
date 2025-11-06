@@ -12,21 +12,15 @@ export type Question = {
   options: Option[];
 };
 
-export type JudgeRules = {
-  premium?: { doubleStarsAtLeast?: number; tripleStarsAtLeast?: number; starsAtLeast?: number };
-  standard?: { starsBetween?: [number, number] };
-  reject?: { stars?: number };
-};
-
 export type Flow = {
   key: 'divorce' | 'inheritance' | 'labor';
   label: string;
   intro: string;
   questions: Question[];
-  judge: JudgeRules;
   messages: {
-    premium: string;
-    standard: string;
+    high: string;
+    medium: string;
+    low: string;
     reject: string;
   };
 };

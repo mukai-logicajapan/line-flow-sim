@@ -1,35 +1,32 @@
-import type { JudgeRules, Option } from '@/types/flow';
+import type { Option } from '@/types/flow';
 
 export type Result = {
   stars: number;
+  singleStarCount: number;
   doubleStarCount: number;
   tripleStarCount: number;
 };
 
-export const calc = (choices: Option[]): Result => ({
-  stars: choices.reduce((sum, choice) => sum + (choice?.score ?? 0), 0),
-  doubleStarCount: choices.filter(choice => choice?.tier === '★★').length,
-  tripleStarCount: choices.filter(choice => choice?.tier === '★★★').length,
-});
+export const calc = (choices: Option[]): Result => {
+  const stars = choices.reduce((sum, choice) => sum + (choice?.score ?? 0), 0);
+  const singleStarCount = choices.filter(choice => choice?.tier === '★').length;
+  const doubleStarCount = choices.filter(choice => choice?.tier === '★★').length;
+  const tripleStarCount = choices.filter(choice => choice?.tier === '★★★').length;
 
-export type JudgeResult = 'premium' | 'standard' | 'reject';
+  return {
+    stars,
+    singleStarCount,
+    doubleStarCount,
+    tripleStarCount,
+  };
+};
 
-export const judge = (result: Result, rules: JudgeRules): JudgeResult => {
-  if (rules.premium) {
-    const okDouble =
-      rules.premium.doubleStarsAtLeast == null || result.doubleStarCount >= rules.premium.doubleStarsAtLeast;
-    const okTriple =
-      rules.premium.tripleStarsAtLeast == null || result.tripleStarCount >= rules.premium.tripleStarsAtLeast;
-    const okStars = rules.premium.starsAtLeast == null || result.stars >= rules.premium.starsAtLeast;
-    if (okDouble && okTriple && okStars) return 'premium';
-  }
+export type JudgeResult = 'high' | 'medium' | 'low' | 'reject';
 
-  if (rules.standard?.starsBetween) {
-    const [min, max] = rules.standard.starsBetween;
-    if (result.stars >= min && result.stars <= max) return 'standard';
-  }
-
-  if (rules.reject?.stars === 0 && result.stars === 0) return 'reject';
-
-  return 'standard';
+export const judge = (result: Result): JudgeResult => {
+  if (result.tripleStarCount >= 3) return 'high';
+  if (result.doubleStarCount >= 2) return 'medium';
+  if (result.stars === 0) return 'reject';
+  if (result.singleStarCount <= 1) return 'low';
+  return 'low';
 };

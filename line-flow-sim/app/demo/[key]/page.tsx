@@ -45,16 +45,20 @@ export default function DemoPage({ params }: Props) {
   );
 
   const result = useMemo(() => calc(selectedOptions), [selectedOptions]);
-  const judgeResult = useMemo(() => judge(result, flow.judge), [result, flow.judge]);
+  const judgeResult = useMemo(() => judge(result), [result]);
+
+  const isLabor = flow.key === 'labor';
 
   return (
-    <main className="container">
+    <main className="container demo-page">
       <AccountTabs accounts={data.accounts} activeKey={flow.key} />
-      <div className="demo-layout">
+      <div className={`demo-layout ${isLabor ? 'demo-layout-no-sidebar' : ''}`}>
         <div className="demo-left">
           <ChatFlow flow={flow} value={answers} onChange={handleChange} />
         </div>
-        <ScorePanel flow={flow} selections={selections} result={result} judgeResult={judgeResult} />
+        {!isLabor && (
+          <ScorePanel flow={flow} selections={selections} result={result} judgeResult={judgeResult} />
+        )}
       </div>
     </main>
   );

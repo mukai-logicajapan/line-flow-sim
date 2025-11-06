@@ -17,9 +17,10 @@ type Props = {
 };
 
 const judgeLabels: Record<JudgeResult, string> = {
-  premium: 'プレミアム案件 想定',
-  standard: '標準案件 想定',
-  reject: '非対象 想定',
+  high: '優先対応（高）',
+  medium: '優先対応（中）',
+  low: '優先対応（低）',
+  reject: '案内不可',
 };
 
 const ScorePanel = ({ flow, selections, result, judgeResult }: Props) => {
