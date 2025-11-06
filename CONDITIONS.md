@@ -176,28 +176,14 @@ handleCategory(key: 'divorce' | 'inheritance' | 'labor')
 
 ### ページレイアウト (`app/demo/[key]/page.tsx`)
 
-**条件:** `isLabor = flow.key === 'labor'`
-
-**条件分岐:**
-
-1. **レイアウトクラス**
-   - **IF** `isLabor === true`
-     - `demo-layout` に `demo-layout-no-sidebar` クラスを追加
-   - **ELSE**
-     - `demo-layout` クラスのみ
-
-2. **ScorePanel表示**
-   - **IF** `isLabor === true`
-     - ScorePanelを非表示（レンダリングしない）
-   - **ELSE**
-     - ScorePanelを表示
+- すべてのフローで `<main className="container demo-page">` を使用。
+- `.demo-layout` 内にチャット領域と `ScorePanel` を並べて表示する。
+- ScorePanel は常にレンダリングされ、チャット結果と同期して更新される。
 
 ### CSS レスポンシブ条件分岐 (`globals.css`)
 
-**メディアクエリ:**
-- **IF** `@media (max-width: 960px)` (モバイル)
-  - `.demo-layout` を `flex-direction: column` に変更
-  - `.score-panel` の `position` を `static` に変更
+- モバイル幅 (960px 未満) では `.demo-layout` を縦並び (`flex-direction: column`) にしてチャットとスコアを上下に配置。
+- 960px 以上では `.demo-layout` を 2 カラムグリッドにして、左にチャット (最大幅 420px)、右に ScorePanel (最大幅 320px) を固定表示。
 - **ELSE** (デスクトップ)
   - `.demo-layout` を `grid` レイアウトに設定
   - `.demo-layout-no-sidebar` の場合、`grid-template-columns: minmax(0, 420px)`
@@ -428,4 +414,3 @@ IF カテゴリ選択
 2. **全質問回答済み判定**: `allAnswered` は `selectedOptions.length === flow.questions.length && flow.questions.length > 0` で判定
 3. **未回答質問の制御**: 最初の未回答質問でメッセージ表示とクイックリプライを停止
 4. **カテゴリ確認状態**: `categoryConfirmed` が `false` の間は、質問メッセージは表示されない
-

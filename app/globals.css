@@ -151,10 +151,6 @@ a {
   width: 100%;
 }
 
-.demo-layout-no-sidebar {
-  width: 100%;
-}
-
 .demo-left {
   display: flex;
   flex-direction: column;
@@ -322,10 +318,6 @@ a {
     gap: 24px;
     justify-content: center;
     align-items: start;
-  }
-
-  .demo-layout-no-sidebar {
-    grid-template-columns: minmax(0, 420px);
   }
 
   .score-panel {
